@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main id="main">
+      
+    <!-- ======= Check company Section ======= -->
+    <section id="check-url" class="contact mt-80">
+      <div class="container">
+        <div class="section-title">
+          <h2>Check</h2>
+          <h3>Check <span>company</span> for Product Creation</h3>
+          <p>
+            Enter company URL in format as shown in input and check whether it can assist in Product Creation.
+          </p>
+        </div>
+
+        <div class="row justify-content-center">
+          <div class="col-lg-6">
+          <div class="row">
+              <div class="form-group mt-3">
+              <input
+                type="text"
+                class="form-control"
+                name="url"
+                value={{inputurl}}
+                readonly
+              />
+            </div>
+            <div class="my-3">    
+            {% if prediction["status"] == 0%}
+              <p class="error-message">
+              {{prediction['data']}}  
+              </p>
+            {% elif prediction["status"] == 1%}
+            <p class="res-text">
+              Above company is an <span>AI company</span>  
+              which can assist in <span> {{ prediction["PCClass"]}} </span> phase.
+            </p>
+            {% elif prediction["status"] == 2%}
+              <p class="res-text">
+                Above company is an <span>{{ prediction["data"] }}</span>
+              </p>
+            {% elif prediction["status"] == 3 %}
+            <p class="res-text">
+              Above company is an <span>AI company</span> but cannot assist in product creation.
+            </p>
+            {% else %}
+            <p class="res-text"> {{ prediction["data"] }}</p>
+            {% endif %}
+          </div>      
+          
+            <div class="text-center">
+              <a class="back-btn" href="/admin">Check Again!</a>
+            </div>
+        </div>
+      </div>
+      </div>
+    </section>
+    <!-- End Check company Section -->
+</main>
+<!-- End #main -->
+{% endblock %}

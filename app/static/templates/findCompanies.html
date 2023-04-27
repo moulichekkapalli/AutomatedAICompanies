@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main id="main">
+      
+    <!-- ======= Search companies Section ======= -->
+    <section id="search-companies" class="contact mt-80">
+      <div class="container">
+        <div class="section-title">
+          <h2>Search</h2>
+          <h3>Include <span>AI</span> in Product Creation</h3>
+          <p>
+            Enter keywords related to your product creation cycle and find out companies that can Automate
+            it.
+          </p>
+        </div>
+
+
+        <div class="row justify-content-center">
+
+          <div class="col-lg-6 ">
+
+            <form
+              action="{{ url_for('search')}}" 
+              method="POST"
+              role="form"
+            >
+              <div class="row">
+              <div class="form-group mt-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  name="keywords"
+                  id="keywords"
+                  placeholder="Enter your keywords..."
+                  required
+                />
+              </div>
+              <div class="my-3">    
+                {% if error %}
+                <div class="error-message input-box">{{error}}</div>
+                {% endif %}
+              </div>      
+              <div class="text-center">
+                <button type="submit">Search</button>
+              </div>
+            </form>
+
+          </div>
+
+        </div>
+
+        
+      </div>
+    </section>
+</main>
+<!-- End #main -->
+{% endblock %}
